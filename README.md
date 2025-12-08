@@ -1,2 +1,0 @@
-# Dreamhack
-Gyul_Console
