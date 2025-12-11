@@ -1,9 +1,12 @@
 # Gyul_Console
 > **Description**
-This server has an experimental console that the owner of the tangerine farm forgot to delete.
-When you put an expression in /console, the server evaluates the expression and returns the result.
-Enter the appropriate input values and get the flag!
-[Link](https://dreamhack.io/wargame/challenges/2550)
+>This server has an experimental console that the owner of the tangerine farm forgot to delete.
+>
+> When you put an expression in /console, the server evaluates the expression and returns the result.
+>
+> Enter the appropriate input values and get the flag!
+>
+> [Link](https://dreamhack.io/wargame/challenges/2550)
 
 First, let's take a look at `app.py`
 ```python
@@ -107,4 +110,6 @@ expr = request.form.get("expr", "")
         try:
             result = eval(expr)
 ```
-The vulnerability arises because the application uses eval(expr) without any input sanitization. This allows for RCE. Since there are no filters in place, I can execute system commands to retrieve the flag using the following payload: ***`import__('os').popen('cat /flag.txt').read()`***
+The vulnerability arises because the application uses eval(expr) without any input sanitization. This allows for RCE. Since there are no filters in place, I can execute system commands to retrieve the flag using the following payload: 
+
+***`import__('os').popen('cat /flag.txt').read()`***
