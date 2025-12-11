@@ -197,10 +197,14 @@ driver.get("http://localhost:3000/")
 ```
 So the report feature essentially triggers a headless Chrome bot logged in as admin.
 Next, we review the `index.html` template:
+
 `<img src="{{ profile.image }}" alt="Profile Image" class="profile-image">`
+
 The value of profile.image is fully user-controlled and inserted directly into an src attribute, which the admin bot will load whenever it visits the homepage.
 Since after login the admin is redirected to:
+
 `http://localhost:3000/?token=...`
+
 We can craft a malicious image URL that forces the admin’s browser to leak its token to our server.
 As expected, by submitting such a payload and using the report feature, we can capture the administrator’s token effortlessly:
 
