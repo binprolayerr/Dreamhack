@@ -1,4 +1,5 @@
 https://dreamhack.io/wargame/challenges/1785
+
 Bài này ta được cho đoạn mã sau:
 ```php
 <!DOCTYPE html>
