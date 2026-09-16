@@ -78,13 +78,17 @@ Bài này ta được cho đoạn mã sau:
 ```
 
 Đầu tiên nhìn vào đoạn code ta xác định được tên file sẽ được lấy từ url thông qua chi tiết `isset($_GET['file'])` và nó được check regex bằng base64 cũng như việc nó sẽ decode nội dung trước khi ghi filepath. Điều này giúp ta xác định mục tiêu tấn công sẽ là truyền đoạn mã được encode base64 vào url để có thể đọc được file flag.php. 
+
 Ở đây khi encode ../flag.php thì ta sẽ được đoạn mã là `Li4vZmxhZy5waHA=`. Và ta thấy nếu để nguyên như vậy thì đã bị check và block regex rồi nên ta có thể tìm hiểu thêm về cách decode của hàm base64_decode() của PHP tại đây:
+
 https://www.php.net/manual/en/function.base64-decode.php
+
 Như cách trang chủ đề cập:
 
 > If the strict parameter is set to true then the base64_decode() function will return false if the input contains character from outside the base64 alphabet. Otherwise invalid characters will be silently discarded. 
 
 Thì hàm này sẽ bỏ qua các ký tự không hợp lệ một cách im lặng. Ta có thể nghĩ ngay tới việc sẽ sử dụng khoảng trắng để bypass được việc check regex.
+
 Tuy nhiên vẫn chưa thể nào lấy được flag ta có thể nhận ra rằng việc đã có thể bypass được các hàm check bằng việc thử từng cách nhưng cuối cùng vẫn còn sai tên đường dẫn file:
 
 <img width="1718" height="998" alt="image" src="https://github.com/user-attachments/assets/31d29427-8b8e-4b71-80dd-6c1e37cf570b" />
